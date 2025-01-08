@@ -1,6 +1,7 @@
 import { CardContent, Card } from "./ui/card";
 import { ArrowDown, ArrowUp, Droplets, Wind } from "lucide-react";
 import type { WeatherData, GeocodingResponse } from "../api/types";
+import { count } from "console";
 
 interface CurrentWeatherProps {
   data: WeatherData;
@@ -12,6 +13,7 @@ export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
     weather: [currentWeather],
     main: { temp, feels_like, temp_min, temp_max, humidity },
     wind: { speed },
+    sys: { country, state },
   } = data;
 
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
@@ -26,11 +28,20 @@ export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
                 <h2 className="text-2xl font-bold tracking-tight">
                   {locationName}
                 </h2>
-                {/* {locationName?.state && (
-                <span className="text-muted-foreground">
-                  , {locationName.state}
-                </span>
-              )} */}
+                {
+                  country && (
+                    <span className="ml-2 text-muted-foreground">
+                      ({country})
+                    </span>
+                  )
+                }
+                {
+                  state && (
+                    <span className="ml-2 text-muted-foreground">
+                      ({state})
+                    </span>
+                  )
+                }
               </div>
               {/* <p className="text-sm text-muted-foreground">
               {locationName?.country}

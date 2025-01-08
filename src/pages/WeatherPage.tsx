@@ -1,4 +1,4 @@
-import { AlertTriangle, RefreshCw } from "lucide-react"
+import { AlertTriangle, RefreshCw, MapPin } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { useGeolocation } from "../hooks/use-geolocation"
 import WeatherSkeleton from "../components/loading-skeleton";
@@ -38,11 +38,10 @@ const WeatherPage = () => {
       <AlertTitle>Location Error</AlertTitle>
       <AlertDescription className="flex flex-col gap-4">
         <p> {locationError} </p>
-        <Button onClick={getLocation}
-          variant={"outline"}
-          className="w-fit"
-        >
-        </Button>
+        <Button variant="outline" onClick={getLocation} className="w-fit">
+            <MapPin className="mr-2 h-4 w-4" />
+            Enable Location
+          </Button>
       </AlertDescription>
     </Alert>
   }
