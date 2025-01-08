@@ -5,6 +5,8 @@ import WeatherSkeleton from "../components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-weather";
 import CurrentWeather from "../components/currentWeather";
+import HourlyTemperature from "../components/hourlyTemperature";
+
 
 const WeatherPage = () => {
   // creating a custom hook to fetch current location
@@ -15,7 +17,7 @@ const WeatherPage = () => {
   const weatherQuery = useWeatherQuery(coordinates);
   // console.log("Weather ki query : \n",weatherQuery);
   const forecastQuery = useForecastQuery(coordinates);
-  // console.log("forecast ka data : \n",forecastQuery);
+  console.log("forecast ka data : \n", forecastQuery);
 
   // console.log(locationQuery);
 
@@ -39,9 +41,9 @@ const WeatherPage = () => {
       <AlertDescription className="flex flex-col gap-4">
         <p> {locationError} </p>
         <Button variant="outline" onClick={getLocation} className="w-fit">
-            <MapPin className="mr-2 h-4 w-4" />
-            Enable Location
-          </Button>
+          <MapPin className="mr-2 h-4 w-4" />
+          Enable Location
+        </Button>
       </AlertDescription>
     </Alert>
   }
@@ -62,7 +64,7 @@ const WeatherPage = () => {
   }
 
   const locationName = locationQuery.data?.[0]?.name;
-  
+
   if (weatherQuery.error || forecastQuery.error) {
     return <Alert variant={'destructive'}>
       <AlertTriangle className="h-4 w-4" />
@@ -100,16 +102,18 @@ const WeatherPage = () => {
       </div>
 
       <div className="grid gap-6">
-        <div>
+        <div className="flex flex-col lg:flex-row gap-4">
           {/* current weather & hourly temp. */}
           <CurrentWeather
             data={weatherQuery.data}
             locationName={locationName}
           />
+          <HourlyTemperature data={forecastQuery.data} />
         </div>
 
         <div>
           {/* details and forecast */}
+
         </div>
       </div>
 
