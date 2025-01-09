@@ -5,7 +5,9 @@ import WeatherSkeleton from "../components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-weather";
 import CurrentWeather from "../components/currentWeather";
-import HourlyTemperature from "../components/hourlyTemperature";
+import HourlyTemperature from "../components/HourlyTemperature";
+import WeatherDetails from "../components/WeatherDetails";
+import WeatherForecast from "../components/WeatherForecast";
 
 
 const WeatherPage = () => {
@@ -111,9 +113,10 @@ const WeatherPage = () => {
           <HourlyTemperature data={forecastQuery.data} />
         </div>
 
-        <div>
+        <div className="grid gap-6 md:grid-cols-2 items-start">
           {/* details and forecast */}
-
+          <WeatherDetails data = {weatherQuery.data} />
+          <WeatherForecast data = {forecastQuery.data} />
         </div>
       </div>
 
