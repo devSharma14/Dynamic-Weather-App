@@ -19,10 +19,11 @@ const WeatherPage = () => {
   const weatherQuery = useWeatherQuery(coordinates);
   // console.log("Weather ki query : \n",weatherQuery);
   const forecastQuery = useForecastQuery(coordinates);
-  console.log("forecast ka data : \n", forecastQuery);
+  // console.log("forecast ka data : \n", forecastQuery);
+  const locationName = locationQuery.data?.[0]?.name;
 
   // console.log(locationQuery);
-
+  
   const handleRefresh = () => {
     getLocation();
     if (coordinates) {
@@ -65,7 +66,6 @@ const WeatherPage = () => {
     </Alert>
   }
 
-  const locationName = locationQuery.data?.[0]?.name;
 
   if (weatherQuery.error || forecastQuery.error) {
     return <Alert variant={'destructive'}>
@@ -105,6 +105,7 @@ const WeatherPage = () => {
 
       <div className="grid gap-6">
         <div className="flex flex-col lg:flex-row gap-4">
+
           {/* current weather & hourly temp. */}
           <CurrentWeather
             data={weatherQuery.data}

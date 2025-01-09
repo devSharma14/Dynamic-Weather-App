@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
+import { Clock, Loader2, Search, Star, XCircle } from "lucide-react";
 import { useLocationSearch } from "../hooks/use-weather";
 import { useSearchHistory } from "../hooks/useHistory";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import {
     Command,
     CommandDialog,
     CommandInput,
+    CommandEmpty,
+    CommandGroup,
+    CommandItem,
+    CommandList,
+    CommandSeparator,
 } from "./ui/command";
 import { Button } from "./ui/button";
-import { CommandEmpty, CommandGroup, CommandItem, CommandList, CommandSeparator } from "cmdk";
-import { format } from "date-fns"
+import { format } from "date-fns";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"; // Import VisuallyHidden
 
 const CitySearch = () => {
     const [open, setOpen] = useState(false);
@@ -32,13 +38,13 @@ const CitySearch = () => {
         });
 
         setOpen(false);
-        navigate(`/city/${name}?lat=${lat}&long=${lon}`);
+        navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
     };
 
     return (
         <>
             <Button
-                variant={"outline"}
+                variant="outline"
                 className="relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
                 onClick={() => setOpen(true)}
             >
@@ -48,47 +54,69 @@ const CitySearch = () => {
 
             <CommandDialog open={open} onOpenChange={setOpen}>
                 <Command>
+                    <DialogTitle>
+                        <VisuallyHidden>Search Cities Dialog</VisuallyHidden>
+                    </DialogTitle> {/* Add a DialogTitle component here */}
                     <CommandInput
                         placeholder="Search cities..."
                         value={query}
                         onValueChange={setQuery}
                     />
-
                     <CommandList>
-
                         {query.length > 2 && !isLoading && (
-                            <CommandEmpty>Oops! No cities found.</CommandEmpty>
+                            <CommandEmpty>No cities found.</CommandEmpty>
                         )}
 
+                        {/* Favorites Section */}
+                        {/* {favorites.length > 0 && (
+                          <CommandGroup heading="Favorites">
+                            {favorites.map((city) => (
+                              <CommandItem
+                                key={city.id}
+                                value={`${city.lat}|${city.lon}|${city.name}|${city.country}`}
+                                onSelect={handleSelect}
+                              >
+                                <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                                <span>{city.name}</span>
+                                {city.state && (
+                                  <span className="text-sm text-muted-foreground">
+                                    , {city.state}
+                                  </span>
+                                )}
+                                <span className="text-sm text-muted-foreground">
+                                  , {city.country}
+                                </span>
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        )} */}
+
+                        {/* Search History Section */}
                         {history.length > 0 && (
                             <>
                                 <CommandSeparator />
                                 <CommandGroup>
                                     <div className="flex items-center justify-between px-2 my-2">
-                                        <p>
+                                        <p className="text-xs text-muted-foreground">
                                             Recent Searches
                                         </p>
-
                                         <Button
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => clearHistory.mutate()}
                                         >
                                             <XCircle className="h-4 w-4" />
+                                            Clear
                                         </Button>
                                     </div>
-
                                     {history.map((item) => (
                                         <CommandItem
                                             key={item.id}
                                             value={`${item.lat}|${item.lon}|${item.name}|${item.country}`}
                                             onSelect={handleSelect}
                                         >
-
                                             <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
-
                                             <span>{item.name}</span>
-
                                             {item.state && (
                                                 <span className="text-sm text-muted-foreground">
                                                     , {item.state}
@@ -97,18 +125,16 @@ const CitySearch = () => {
                                             <span className="text-sm text-muted-foreground">
                                                 , {item.country}
                                             </span>
-
                                             <span className="ml-auto text-xs text-muted-foreground">
                                                 {format(item.searchedAt, "MMM d, h:mm a")}
                                             </span>
                                         </CommandItem>
                                     ))}
-
                                 </CommandGroup>
                             </>
                         )}
 
-                        {/* search results */}
+                        {/* Search Results */}
                         <CommandSeparator />
                         {locations && locations.length > 0 && (
                             <CommandGroup heading="Suggestions">
@@ -138,7 +164,6 @@ const CitySearch = () => {
                             </CommandGroup>
                         )}
                     </CommandList>
-
                 </Command>
             </CommandDialog>
         </>
