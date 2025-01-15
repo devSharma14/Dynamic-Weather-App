@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+// import { Search } from "lucide-react";
 import type { Coordinates } from "../api/types";
 import { weatherAPI } from "../api/weather";
 import { useQuery } from "@tanstack/react-query";

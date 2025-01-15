@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Coordinates } from '../src/api/types.ts';
-
+import { Coordinates } from "../api/types";
 interface GeolocationState {
     coordinates: Coordinates | null;
     error: string | null;
