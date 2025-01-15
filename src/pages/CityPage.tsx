@@ -32,7 +32,6 @@ const CityPage = () => {
   }
 
   if (!weatherQuery.data || !forecastQuery.data) {
-    console.log("load hi hora bc");
     return <WeatherSkeleton />;
   }
 

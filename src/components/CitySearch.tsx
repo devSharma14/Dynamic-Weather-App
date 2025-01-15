@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Clock, Loader2, Search, Star, XCircle } from "lucide-react";
+import { Clock, Loader2, Search, XCircle } from "lucide-react";
 import { useLocationSearch } from "../hooks/use-weather";
 import { useSearchHistory } from "../hooks/useHistory";
 import { DialogTitle } from "@radix-ui/react-dialog";

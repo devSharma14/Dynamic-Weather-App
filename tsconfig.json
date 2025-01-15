@@ -10,6 +10,10 @@
   ],
   "compilerOptions": {
     "types": ["node"],
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "baseUrl": ".",  // Set base URL for module resolution
+    "paths": {
+      "@/*": ["src/*"]  // Map '@' to the 'src' directory
+    }
   }
 }
