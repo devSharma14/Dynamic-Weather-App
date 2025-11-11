@@ -7,11 +7,6 @@ Built using **React**, **Tailwind CSS**, and **OpenWeather API**.
 
 <img width="1613" height="835" alt="image" src="https://github.com/user-attachments/assets/c8e0adfe-f485-4b1c-bc4a-f8754d040e47" />
 
-
-
-
-<img width="1025" height="463" alt="image" src="https://github.com/user-attachments/assets/93ade04f-fb7a-4eb5-abb9-c9f7e36f13b1" />
-
 ---
 
 ## 🧠 Features
