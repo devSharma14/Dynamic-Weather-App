@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
+# 🌦️ Klimate – Real-Time Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern weather forecasting web app that provides real-time weather data, hourly trends, and 5-day forecasts based on your location.  
+Built using **React**, **Tailwind CSS**, and **OpenWeather API**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1613" height="835" alt="image" src="https://github.com/user-attachments/assets/c8e0adfe-f485-4b1c-bc4a-f8754d040e47" />
 
-## Expanding the ESLint configuration
+<img width="1025" height="463" alt="image" src="https://github.com/user-attachments/assets/93ade04f-fb7a-4eb5-abb9-c9f7e36f13b1" />
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🧠 Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- 📍 **Auto-detects your current city** using Geolocation API  
+- 🌡️ Displays **current temperature**, condition, humidity, pressure, visibility, and wind speed  
+- 📊 Interactive **hourly temperature graph**  
+- 📅 **5-day forecast** with detailed weather data  
+- ⚙️ Error handling for invalid location or failed fetch  
+- 🧭 Clean, responsive UI designed with **Tailwind CSS**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🛠️ Tech Stack
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+**Frontend:** React, Typescript, Tailwind CSS  
+**API:** OpenWeather API  
+**Data Visualization:** Chart.js 
+**State Management:** React Hooks & Context API  
+
+---
+
+## ⚙️ Setup Instructions
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/devSharma14/Dynamic-Weather-App.git
+
+# 2️⃣ Move into the project folder
+cd Climate-App
+
+# 3️⃣ Install dependencies
+npm install
+
+# 4️⃣ Add environment variables
+# Create a .env file in the root folder and add:
+VITE_WEATHER_API_KEY=your_openweather_api_key
+
+# 5️⃣ Run the app
+npm run dev
